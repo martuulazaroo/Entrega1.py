@@ -2,7 +2,12 @@
 -----------------------------------------------------------------------------------------------
 Título: TP N° 1 - Entrega1.py
 Fecha:
-Autor:
+Autor: 
+Lázaro Martina - Legajo: 1238503
+Mastronardi Milena - Legajo: 1233930
+Lacava Giuliana - Legajo: 1239334
+Cebreiros Juana - Legajo: 1238673
+Bianciotto Sofía - Legajo: 1241171
 
 Descripción:
 
