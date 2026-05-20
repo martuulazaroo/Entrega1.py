@@ -1,7 +1,7 @@
 """
 -----------------------------------------------------------------------------------------------
 Título: TP N° 1 - Entrega1.py
-Fecha:
+Fecha: Mayo 2026 
 Autor: 
 Lázaro Martina - Legajo: 1238503
 Mastronardi Milena - Legajo: 1233930
@@ -10,6 +10,18 @@ Cebreiros Juana - Legajo: 1238673
 Bianciotto Sofía - Legajo: 1241171
 
 Descripción:
+Este programa permite cargar y trabajar con una lista de números enteros.
+A través de un menú de opciones, el usuario puede:
+   1. Generar números al azar de 1, 3 y 5 dígitos.
+   2. Mostrar los datos en una tabla ordenada de 10 columnas.
+   3. Eliminar los números repetidos sin cambiar el orden original.
+   4. Filtrar los números (mayores, menores, pares, impares o en rango).
+   5. Desdoblar la lista en varias listas según diferentes criterios.
+   6. Ver un ranking con los "N" valores más altos.
+   7. Buscar el máximo y el mínimo y mostrarlos destacados en la tabla.
+
+ Todo el código está hecho usando funciones separadas y respetando las
+ reglas de la cátedra (sin usar funciones automáticas como max, min o sort).
 
 Pendientes:
 -----------------------------------------------------------------------------------------------
@@ -24,7 +36,22 @@ Pendientes:
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
-...
+def pedir_entero (mensaje):
+    """
+    Solicita un número entero al usuario por teclado y lo valida.
+    Asegura que la entrada esté compuesta únicamente por dígitos utilizando 
+    el método .isdigit(), repitiendo el pedido en caso de error.
+    Recibe:
+        mensaje (str): El texto explicativo que se le muestra al usuario para pedir el dato.   
+    Devuelve:
+        int: El número entero ingresado por el usuario, una vez comprobado que es válido.
+    """
+    while True:
+        cadena = input(mensaje)
+        if cadena.isdigit():
+            return int(cadena)
+        else:
+            print("Error: Debe ingresar un número entero válido (solo digitos). Intente nuevamente.")
 
 
 
@@ -35,7 +62,7 @@ def main():
     #-------------------------------------------------
     # Inicialización de variables
     #----------------------------------------------------------------------------------------------
-    ...
+    
 
 
     #-------------------------------------------------
