@@ -24,9 +24,46 @@ Pendientes:
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
 #----------------------------------------------------------------------------------------------
-...
 
+def desdoblarValores(lista):
+    listaTrabajo = lista
+    criterio = input("\nIngrese le cirterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
 
+    while (criterio != P) and (criterio != C) and (criterio != U):
+        criterio = input("\nERROR - Ingrese le cirterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
+
+    if criterio == P:
+        pares = []
+        impares = []
+        for i in range(len(listaTrabajo)):
+            if listaTrabajo[i] % 2 == 0:
+                pares.append(listaTrabajo[i])
+            else:
+                impares.append(listaTrabajo[i])
+        listados = [pares, impares]
+    
+    elif criterio == C:
+        unaCifra = []
+        tresCifras = []
+        cincoCifras = []
+
+        for i in range(len(listaTrabajo)):
+            cifras = len(str(listaTrabajo[i]))
+            if cifras == 1:
+                unaCifra.append(listaTrabajo[i])
+            elif cifras == 3:
+                tresCifras.append(listaTrabajo[i])
+            elif cifras == 5:
+                cincoCifras.append(listaTrabajo[i])
+                
+        listados = [unaCifra, tresCifras, cincoCifras]
+    
+    else:
+        hastaUmbral = []
+        encimaUmbral = []
+        umbral = int(input("\n Ingrese el numero umbral:\t"))
+        
+    return listados
 
 #----------------------------------------------------------------------------------------------
 # CUERPO PRINCIPAL
