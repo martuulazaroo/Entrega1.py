@@ -53,6 +53,68 @@ def pedir_entero (mensaje):
         else:
             print("Error: Debe ingresar un número entero válido (solo digitos). Intente nuevamente.")
 
+def generar_valores (lista):
+    """
+    Genera una lista de números enteros al azar de 1, 3 y 5 dígitos.
+    Recibe: lista (list) -> La lista original.
+    Devuelve: list -> La nueva lista con los valores generados.
+    """
+    print("\n[Opción 1] Se seleccionó: Generar valores (Desarrollo pendiente por completar)")
+    return lista
+
+def mostrar_valores (lista, titulo):
+    """
+    Muestra los valores de la lista en un formato de tabla encolumnada.
+    Recibe: 
+        lista (list) -> La lista a mostrar.
+        titulo (str) -> El título variable de la tabla, ya que cambiará según quién lo llame.    
+    Devuelve:
+        None: Esta función solo imprime en pantalla y no retorna ningún valor.
+    """
+    print(f"\n[Opción 2] Se seleccionó: Mostrar valores - {titulo} (Desarrollo pendiente por completar)")
+
+def eliminar_repetidos (lista):
+    """
+    Elimina los números repetidos de la lista sin cambiar el orden original.
+    Recibe: lista (list) -> La lista original con posibles valores repetidos.
+    Devuelve: list -> La nueva lista sin valores repetidos, manteniendo el orden original.
+    """
+    print("\n[Opción 3] Se seleccionó: Eliminar repetidos (Desarrollo pendiente por completar)")
+    return lista
+
+def filtrar_valores (lista):
+    """
+    Filtra los números de la lista según diferentes criterios (mayores, menores, pares, impares o en rango).
+    Recibe: lista (list) -> La lista original a filtrar.
+    Devuelve: list -> La nueva lista con los valores que cumplen el criterio de filtrado seleccionado por el usuario.
+    """
+    print("\n[Opción 4] Se seleccionó: Filtrar valores (Desarrollo pendiente por completar)")
+
+def desdoblar_lista (lista):
+    """
+    Desdobla la lista original en varias listas según diferentes criterios (por ejemplo, por cantidad de dígitos).
+    Recibe: lista (list) -> La lista original a desdoblar.
+    Devuelve: dict -> Un diccionario con las nuevas listas desdobladas, donde cada clave representa el criterio de desdoblamiento.
+    """
+    print("\n[Opción 5] Se seleccionó: Desdoblar lista (Desarrollo pendiente por completar)")
+
+def valores_top_n (lista):
+    """
+    Muestra un ranking con los "N" valores más altos de la lista.
+    Recibe: lista (list) -> La lista original de la cual se extraerán los valores más altos.
+    Devuelve: list -> Una nueva lista con los "N" valores más altos, ordenados de mayor a menor.
+    """
+    print("\n[Opción 6] Se seleccionó: Valores Top N (Desarrollo pendiente por completar)")
+
+def mostrar_max_min (lista):
+    """
+    Busca el máximo y el mínimo de la lista y los muestra destacados en la tabla.
+    Recibe: lista (list) -> La lista original de la cual se buscarán el máximo y el mínimo.
+    Devuelve:
+      None: Esta función solo muestra los valores destacados en pantalla.
+    """
+    print("\n[Opción 7] Se seleccionó: Mostrar máximo y mínimo (Desarrollo pendiente por completar)")
+
 
 
 #----------------------------------------------------------------------------------------------
