@@ -124,15 +124,15 @@ def main():
     #-------------------------------------------------
     # Inicialización de variables
     #----------------------------------------------------------------------------------------------
-    
+    listas_datos = [] # Lista principal donde se almacenarán los números enteros generados y manipulados a lo largo del programa.
 
 
     #-------------------------------------------------
     # Bloque de menú
     #----------------------------------------------------------------------------------------------
-    while True:
-        while True:
-            opciones = 4
+    while True: #bucle general del programa, se repetirá hasta que el usuario elija salir (opción 0)
+        while True: #bucle interno para validar la opción del menú, se repetirá hasta que el usuario ingrese una opción válida
+            opciones = 7 # Cantidad de opciones del menú (sin contar la opción de salir)
             print()
             print("---------------------------")
             print("MENÚ DEL PROGRAMA           ")
@@ -141,30 +141,40 @@ def main():
             print("[2] Opción 2")
             print("[3] Opción 3")
             print("[4] Opción 4")
+            print("[5] Opción 5")
+            print("[6] Opción 6")
+            print("[7] Opción 7")
             print("---------------------------")
             print("[0] Salir del programa")
             print("---------------------------")
             print()
             
-            opcion = input("Seleccione una opción: ")
-            if opcion in [str(i) for i in range(0, opciones + 1)]: # Sólo continua si se elije una opcion de menú válida
+            opcion_numero = pedir_entero ("Ingrese el número de la opción que desea seleccionar: ")
+            if opcion_numero in [str(i) for i in range(0, opciones + 1)]:  # Sólo continua si se elije una opcion de menú válida
+                opcion = str(opcion_numero)
                 break
             else:
                 input("Opción inválida. Presione ENTER para volver a seleccionar.")
         print()
 
         if opcion == "0": # Opción salir del programa
+            print("Saliendo del programa.")
             exit() # También puede ser sys.exit() para lo cual hay que importar el módulo sys
 
         elif opcion == "1":   # Opción 1
-            ...
+            listas_datos = generar_valores (listas_datos)
         elif opcion == "2":   # Opción 2
-            ...
+            mostrar_valores (listas_datos, "Lista Principal")
         elif opcion == "3":   # Opción 3
-            ...
+            listas_datos = eliminar_repetidos (listas_datos)
         elif opcion == "4":   # Opción 4
-            ...
-
+            filtrar_valores (listas_datos)
+        elif opcion == "5":   # Opción 5
+            desdoblar_lista (listas_datos) 
+        elif opcion == "6":   # Opción 6
+            valores_top_n (listas_datos)
+        elif opcion == "7":   # Opción 7
+            mostrar_max_min (listas_datos)
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
 
