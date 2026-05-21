@@ -150,8 +150,8 @@ def main():
             print()
             
             opcion_numero = pedir_entero ("Ingrese el número de la opción que desea seleccionar: ")
-            if opcion_numero in [str(i) for i in range(0, opciones + 1)]:  # Sólo continua si se elije una opcion de menú válida
-                opcion = str(opcion_numero)
+            opcion = str(opcion_numero)
+            if opcion in [str(i) for i in range(0, opciones + 1)]:  # Sólo continua si se elije una opcion de menú válida
                 break
             else:
                 input("Opción inválida. Presione ENTER para volver a seleccionar.")
