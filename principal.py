@@ -160,9 +160,16 @@ def main():
         if opcion == "0": # Opción salir del programa
             print("Saliendo del programa.")
             exit() # También puede ser sys.exit() para lo cual hay que importar el módulo sys
-
         elif opcion == "1":   # Opción 1
+            if listas_datos:  # Si la lista ya tiene datos, se le pregunta al usuario si desea reemplazarlos o mantenerlos
+                print("Ya existen valores generados en la lista.")
+                confirmacion = input("¿Desea reemplazar los valores existentes? (S/N): ").strip().upper()
+                if confirmacion != "S":
+                    print("Manteniendo los valores existentes. No se generarán nuevos valores.")
+                    input("Presione ENTER para volver al menú.")
+                    continue
             listas_datos = generar_valores (listas_datos)
+            print("generación de valores completada.")
         elif opcion == "2":   # Opción 2
             if not listas_datos:  # Si la lista está vacía, no se puede mostrar nada
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
