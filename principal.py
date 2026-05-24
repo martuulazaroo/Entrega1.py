@@ -3,6 +3,7 @@
 Título: TP N° 1 - Entrega1.py
 Fecha: Mayo 2026 
 Autor: 
+
 Lázaro Martina - Legajo: 1238503
 Mastronardi Milena - Legajo: 1233930
 Lacava Giuliana - Legajo: 1239334
@@ -94,27 +95,27 @@ def desdoblar_lista (lista):
     """
     Desdobla la lista original en varias listas según diferentes criterios (por ejemplo, por cantidad de dígitos).
     Recibe: lista (list) -> La lista original a desdoblar.
-    Devuelve: dict -> Un diccionario con las nuevas listas desdobladas, donde cada clave representa el criterio de desdoblamiento.
+    Devuelve: resultado -> Una lista anidada con las nuevas listas desdobladas, donde cada clave representa el criterio de desdoblamiento.
     """
     print("\n[Opción 5] Se seleccionó: Desdoblar lista (Desarrollo pendiente por completar)")
 
     listaTrabajo = lista
     criterio = input("\nIngrese le cirterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
 
-    while (criterio != P) and (criterio != C) and (criterio != U):
+    while (criterio != 'P') and (criterio != 'C') and (criterio != 'U'):
         criterio = input("\nERROR - Ingrese le cirterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
 
-    if criterio == P:
+    if criterio == 'P':
         pares = []
         impares = []
-        for i in range(len(listaTrabajo)):
-            if listaTrabajo[i] % 2 == 0:
-                pares.append(listaTrabajo[i])
+        for n in listaTrabajo:
+            if n % 2 == 0:
+                pares.append(n)
             else:
-                impares.append(listaTrabajo[i])
-        dict = [pares, impares]
+                impares.append(n)
+        resultado = [pares, impares]
     
-    elif criterio == C:
+    elif criterio == 'C':
         unaCifra = []
         tresCifras = []
         cincoCifras = []
@@ -128,14 +129,19 @@ def desdoblar_lista (lista):
             elif cifras == 5:
                 cincoCifras.append(listaTrabajo[i])
                 
-        dict = [unaCifra, tresCifras, cincoCifras]
+        resultado = [unaCifra, tresCifras, cincoCifras]
     
     else:
         hastaUmbral = []
         encimaUmbral = []
         umbral = int(input("\n Ingrese el numero umbral:\t"))
-        
-    return dict
+        for n in listaTrabajo:
+            if n <= umbral:
+                hastaUmbral.append(n)
+            else:
+                encimaUmbral.append(n)
+        resultado = [hastaUmbral, encimaUmbral]
+    return resultado
 
 def valores_top_n (lista):
     """
