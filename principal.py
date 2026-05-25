@@ -95,11 +95,13 @@ def desdoblar_lista (lista):
     """
     Desdobla la lista original en varias listas según diferentes criterios (por ejemplo, por cantidad de dígitos).
     Recibe: lista (list) -> La lista original a desdoblar.
-    Devuelve: resultado -> Una lista anidada con las nuevas listas desdobladas, donde cada clave representa el criterio de desdoblamiento.
+    Devuelve: None (Las listas resultantes se muestran en formato de tabla con la función mostrar_tabla)
     """
-    print("\n[Opción 5] Se seleccionó: Desdoblar lista (Desarrollo pendiente por completar)")
+    print("\n[Opción 5] Se seleccionó: Desdoblar lista")
 
-    listaTrabajo = lista
+    lista_trabajo = lista.copy()
+    base_titulo = "VALORES DEL JUEGO DE DATOS (DATOS DESDOBLADOS) -"
+
     criterio = input("\nIngrese le cirterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
 
     while (criterio != 'P') and (criterio != 'C') and (criterio != 'U'):
@@ -108,57 +110,141 @@ def desdoblar_lista (lista):
     if criterio == 'P':
         pares = []
         impares = []
-        for n in listaTrabajo:
+
+        for n in lista_trabajo:
+
             if n % 2 == 0:
                 pares.append(n)
+            
             else:
                 impares.append(n)
-        resultado = [pares, impares]
+        
+        mostrar_valores(pares, f"{base_titulo} PARES")
+        mostrar_valores(impares, f"{base_titulo} IMPARES")
     
     elif criterio == 'C':
-        unaCifra = []
-        tresCifras = []
-        cincoCifras = []
+        una_cifra = []
+        tres_cifras = []
+        cinco_cifras = []
 
-        for i in range(len(listaTrabajo)):
-            cifras = len(str(listaTrabajo[i]))
+        for i in range(len(lista_trabajo)):
+            cifras = len(str(lista_trabajo[i]))
+
             if cifras == 1:
-                unaCifra.append(listaTrabajo[i])
+                una_cifra.append(lista_trabajo[i])
+
             elif cifras == 3:
-                tresCifras.append(listaTrabajo[i])
+                tres_cifras.append(lista_trabajo[i])
+
             elif cifras == 5:
-                cincoCifras.append(listaTrabajo[i])
-                
-        resultado = [unaCifra, tresCifras, cincoCifras]
-    
+                cinco_cifras.append(lista_trabajo[i])
+
+        mostrar_valores(una_cifra, f"{base_titulo} UNA CIFRA")
+        mostrar_valores(tres_cifras, f"{base_titulo} TRES CIFRAS")
+        mostrar_valores(cinco_cifras, f"{base_titulo} CINCO CIFRAS")
+
     else:
-        hastaUmbral = []
-        encimaUmbral = []
-        umbral = int(input("\n Ingrese el numero umbral:\t"))
-        for n in listaTrabajo:
-            if n <= umbral:
-                hastaUmbral.append(n)
+        hasta_umbral = []
+        encima_umbral = []
+        umbral = input("\n Ingrese el numero umbral:\t")
+
+        while not(umbral.isdigit()):
+            umbral = input("\n ERROR - Ingrese el numero umbral:\t")
+        u = int(umbral)
+
+        for n in lista_trabajo:
+        
+            if n <= u:
+                hasta_umbral.append(n)
+        
             else:
-                encimaUmbral.append(n)
-        resultado = [hastaUmbral, encimaUmbral]
-    return resultado
+                encima_umbral.append(n)
+        
+        mostrar_valores(hasta_umbral, f"{base_titulo} HASTA {u}")
+        mostrar_valores(encima_umbral, f"{base_titulo} ENCIMA DE {u}")
+
+    return
 
 def valores_top_n (lista):
     """
     Muestra un ranking con los "N" valores más altos de la lista.
     Recibe: lista (list) -> La lista original de la cual se extraerán los valores más altos.
-    Devuelve: list -> Una nueva lista con los "N" valores más altos, ordenados de mayor a menor.
+    Devuelve: None (La lista generada top_n se muestra llamando a la funcion mostrar_valores)
     """
-    print("\n[Opción 6] Se seleccionó: Valores Top N (Desarrollo pendiente por completar)")
+    print("\n[Opción 6] Se seleccionó: Valores Top N")
 
-def mostrar_max_min (lista):
+    lista_copia = lista.copy()
+    lista_trabajo = []
+    top_n = []
+
+    for elemento in lista_copia:
+        if elemento not in lista_trabajo:
+            lista_trabajo.append(elemento)
+    
+    numero = input("\nIngrese la cantidad de valores mas altos de la lista que desea mostrar:\t")
+
+    while not(numero.isdigit()):
+        numero = input("\nERROR- Ingrese la cantidad de valores mas altos de la lista que desea mostrar\t")
+    n = int(numero)
+
+    if n > len(lista_trabajo):
+        print(f"ERROR - Se solicito mostrar {n} pero solo existen {len(lista_trabajo)} valores")
+        n = len(lista_trabajo)
+
+    for k in range(0,n):
+        maximo = lista_trabajo[0]
+        pos = 0
+
+        for i, num in enumerate(lista_trabajo):
+
+            if num > maximo:
+                maximo = num
+                pos = i
+
+        top_n.append(maximo)
+        del lista_trabajo[pos]
+    
+    print("\n"+ "*"*50)
+    print(f"VALORES DEL JUEGO DE DATOS (DATOS TOP {n})")
+    print("*"*50)
+
+    for i, j in enumerate(top_n):
+        print(f"{i+1}- {j}")
+
+    return
+
+def buscar_max_min (lista):
     """
     Busca el máximo y el mínimo de la lista y los muestra destacados en la tabla.
     Recibe: lista (list) -> La lista original de la cual se buscarán el máximo y el mínimo.
-    Devuelve:
-      None: Esta función solo muestra los valores destacados en pantalla.
+    Devuelve: None (Esta función solo muestra los valores destacados en pantalla.)
     """
-    print("\n[Opción 7] Se seleccionó: Mostrar máximo y mínimo (Desarrollo pendiente por completar)")
+    print("\n[Opción 7] Se seleccionó: Mostrar máximo y mínimo.")
+
+    lista_trabajo = lista.copy()
+    maximo = -1
+    minimo = 100000
+
+    for elemento in lista_trabajo:
+        
+        if elemento >= maximo:
+            maximo = elemento
+        if elemento <= minimo:
+            minimo = elemento
+    
+    for i,elemento in enumerate(lista_trabajo):
+        if (elemento == maximo) and (elemento == minimo):
+            lista_trabajo[i] = f"<{elemento}>"
+        elif elemento == maximo:
+            lista_trabajo[i] = f"[{elemento}]"
+        elif elemento == minimo:
+            lista_trabajo[i] = f"({elemento})"
+        else:
+            lista_trabajo[i] = (str(elemento))
+    
+    mostrar_valores(lista_trabajo, "VALORES DEL JUEGO DE DATOS (DATOS MÁXIMOS Y MÍNIMOS [máx] (mín) <máx/mín>)")
+    
+    return
 
 
 #----------------------------------------------------------------------------------------------
@@ -236,7 +322,7 @@ def main():
             if not listas_datos:  # Si la lista está vacía, no se pueden mostrar el máximo y mínimo
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
                 continue
-            mostrar_max_min (listas_datos)
+            buscar_max_min (listas_datos)
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
 
