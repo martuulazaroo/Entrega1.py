@@ -55,32 +55,24 @@ def pedir_entero (mensaje):
         else:
             print("Error: Debe ingresar un número entero válido (solo digitos). Intente nuevamente.")
 
-def generarValores (cantidad):
-   
-   lista = []
-    
-    for i in range (0 , cantidad):
-        digito = random.randint(1 , 3)
-        
-        if digito == 1:
-            elemento = (random.randint(0,9))
-            
-        elif digito == 2:
-            elemento = (random.randint(100 , 999))
-            
-        else:
-            elemento = (random.randint(10000 , 99999))
-            
-        lista.append(elemento)
-                    
-        
-    return lista
-   
-    """
+def generar_valores(cantidad):
+   """
     Genera una lista de números enteros al azar de 1, 3 y 5 dígitos.
     Recibe: lista (list) -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
+   lista = []
+   for i in range (0 , cantidad):
+        digito = random.randint(1 , 3)
+        
+        if digito == 1:
+            elemento = (random.randint(0,9))
+        elif digito == 2:
+            elemento = (random.randint(100 , 999))   
+        else:
+            elemento = (random.randint(10000 , 99999))   
+        lista.append(elemento)  
+   return lista
    
 
 def mostrar_valores (lista, titulo):
@@ -94,26 +86,19 @@ def mostrar_valores (lista, titulo):
     """
     print(f"\n[Opción 2] Se seleccionó: Mostrar valores - {titulo} (Desarrollo pendiente por completar)")
 
-def eliminarRepetidos (listaConRepetidos):
-    
-    copiaListaConRepetidos = listaConRepetidos[:]
-    
-    listaSinRepetidos = []
-    
-    for elemento in copiaListaConRepetidos:
-        if elemento not in listaSinRepetidos:
-            listaSinRepetidos.append(elemento)
-            
-    return listaSinRepetidos
-
-    
-    """
+def eliminar_repetidos (listaConRepetidos):
+     """
     Elimina los números repetidos de la lista sin cambiar el orden original.
     Recibe: lista (list) -> La lista original con posibles valores repetidos.
     Devuelve: list -> La nueva lista sin valores repetidos, manteniendo el orden original.
     """
-    print("\n[Opción 3] Se seleccionó: Eliminar repetidos (Desarrollo pendiente por completar)")
-    return lista
+     copiaListaConRepetidos = listaConRepetidos[:]
+     listaSinRepetidos = []
+     for elemento in copiaListaConRepetidos:
+        if elemento not in listaSinRepetidos:
+            listaSinRepetidos.append(elemento)       
+     return listaSinRepetidos
+
 
 def filtrar_valores (lista):
     """
@@ -242,7 +227,6 @@ def valores_top_n (lista):
 
     for i, j in enumerate(top_n):
         print(f"{i+1}- {j}")
-
     return
 
 def buscar_max_min (lista):
