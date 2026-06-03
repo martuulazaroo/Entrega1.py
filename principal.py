@@ -55,12 +55,16 @@ def pedir_entero (mensaje):
         else:
             print("Error: Debe ingresar un número entero válido (solo digitos). Intente nuevamente.")
 
-def generar_valores(cantidad):
+def generar_valores(listas_datos):
    """
     Genera una lista de números enteros al azar de 1, 3 y 5 dígitos.
     Recibe: lista (list) -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
+   import random
+   print("Ingrese la cantidad de valores que desea generar: ") 
+   cantidad = pedir_entero()
+   
    lista = []
    for i in range (0 , cantidad):
         digito = random.randint(1 , 3)
@@ -74,7 +78,6 @@ def generar_valores(cantidad):
         lista.append(elemento)  
    return lista
    
-
 def mostrar_valores (lista, titulo):
     """
     Muestra los valores de la lista en un formato de tabla encolumnada.
@@ -86,19 +89,18 @@ def mostrar_valores (lista, titulo):
     """
     print(f"\n[Opción 2] Se seleccionó: Mostrar valores - {titulo} (Desarrollo pendiente por completar)")
 
-def eliminar_repetidos (listaConRepetidos):
+def eliminar_repetidos (listas_datos):
      """
     Elimina los números repetidos de la lista sin cambiar el orden original.
     Recibe: lista (list) -> La lista original con posibles valores repetidos.
     Devuelve: list -> La nueva lista sin valores repetidos, manteniendo el orden original.
     """
-     copiaListaConRepetidos = listaConRepetidos[:]
+     copiaListaConRepetidos = listas_datos[:]
      listaSinRepetidos = []
      for elemento in copiaListaConRepetidos:
         if elemento not in listaSinRepetidos:
             listaSinRepetidos.append(elemento)       
      return listaSinRepetidos
-
 
 def filtrar_valores (lista):
     """
@@ -310,7 +312,7 @@ def main():
             if listas_datos:  # Si la lista ya tiene datos, se le pregunta al usuario si desea reemplazarlos o mantenerlos
                 print("Ya existen valores generados en la lista.")
                 confirmacion = input("¿Desea reemplazar los valores existentes? (S/N): ").strip().upper()
-                if confirmacion != "S":
+                if confirmacion != "s":
                     print("Manteniendo los valores existentes. No se generarán nuevos valores.")
                     input("Presione ENTER para volver al menú.")
                     continue
@@ -348,20 +350,6 @@ def main():
             buscar_max_min (listas_datos)
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
-
-
-
-    print("ingrese la cantidad de valores que desea generar: ")
-    cantidadValores = int(input())
-    
-    listaValores = generarValores (cantidadValores)
-    
-
-    listaValoresSinRepetidos = eliminarRepetidos(listaValores)
-    
-    print("*************************************************************")
-    print("VALORES DEL JUEGO DE DATOS " , listaValoresSinRepetidos)
-    print("*************************************************************")
 
 # Punto de entrada al programa
 main()
