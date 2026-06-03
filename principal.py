@@ -94,7 +94,19 @@ def mostrar_valores (lista, titulo):
     """
     print(f"\n[Opción 2] Se seleccionó: Mostrar valores - {titulo} (Desarrollo pendiente por completar)")
 
-def eliminar_repetidos (lista):
+def eliminarRepetidos (listaConRepetidos):
+    
+    copiaListaConRepetidos = listaConRepetidos[:]
+    
+    listaSinRepetidos = []
+    
+    for elemento in copiaListaConRepetidos:
+        if elemento not in listaSinRepetidos:
+            listaSinRepetidos.append(elemento)
+            
+    return listaSinRepetidos
+
+    
     """
     Elimina los números repetidos de la lista sin cambiar el orden original.
     Recibe: lista (list) -> La lista original con posibles valores repetidos.
@@ -358,8 +370,14 @@ def main():
     print("ingrese la cantidad de valores que desea generar: ")
     cantidadValores = int(input())
     
-    listaValores = [generarValores (cantidadValores)]
+    listaValores = generarValores (cantidadValores)
     
+
+    listaValoresSinRepetidos = eliminarRepetidos(listaValores)
+    
+    print("*************************************************************")
+    print("VALORES DEL JUEGO DE DATOS " , listaValoresSinRepetidos)
+    print("*************************************************************")
 
 # Punto de entrada al programa
 main()
