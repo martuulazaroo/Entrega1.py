@@ -32,6 +32,7 @@ Pendientes:
 # MÓDULOS
 #----------------------------------------------------------------------------------------------
 ...
+import random
 
 
 #----------------------------------------------------------------------------------------------
@@ -54,14 +55,33 @@ def pedir_entero (mensaje):
         else:
             print("Error: Debe ingresar un número entero válido (solo digitos). Intente nuevamente.")
 
-def generar_valores (lista):
+def generarValores (cantidad):
+   
+   lista = []
+    
+    for i in range (0 , cantidad):
+        digito = random.randint(1 , 3)
+        
+        if digito == 1:
+            elemento = (random.randint(0,9))
+            
+        elif digito == 2:
+            elemento = (random.randint(100 , 999))
+            
+        else:
+            elemento = (random.randint(10000 , 99999))
+            
+        lista.append(elemento)
+                    
+        
+    return lista
+   
     """
     Genera una lista de números enteros al azar de 1, 3 y 5 dígitos.
     Recibe: lista (list) -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
-    print("\n[Opción 1] Se seleccionó: Generar valores (Desarrollo pendiente por completar)")
-    return lista
+   
 
 def mostrar_valores (lista, titulo):
     """
@@ -255,7 +275,7 @@ def main():
     # Inicialización de variables
     #----------------------------------------------------------------------------------------------
     listas_datos = [] # Lista principal donde se almacenarán los números enteros generados y manipulados a lo largo del programa.
-
+    
 
     #-------------------------------------------------
     # Bloque de menú
@@ -333,6 +353,13 @@ def main():
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
 
+
+
+    print("ingrese la cantidad de valores que desea generar: ")
+    cantidadValores = int(input())
+    
+    listaValores = [generarValores (cantidadValores)]
+    
 
 # Punto de entrada al programa
 main()
