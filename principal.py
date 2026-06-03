@@ -61,8 +61,7 @@ def generar_valores(listas_datos):
     Recibe: lista (list) -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
-   import random
-   print("Ingrese la cantidad de valores que desea generar: ") 
+   import random 
    cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
    
    lista = []
@@ -312,7 +311,7 @@ def main():
             if listas_datos:  # Si la lista ya tiene datos, se le pregunta al usuario si desea reemplazarlos o mantenerlos
                 print("Ya existen valores generados en la lista.")
                 confirmacion = input("¿Desea reemplazar los valores existentes? (S/N): ").strip().upper()
-                if confirmacion != "s":
+                if confirmacion != "S":
                     print("Manteniendo los valores existentes. No se generarán nuevos valores.")
                     input("Presione ENTER para volver al menú.")
                     continue
