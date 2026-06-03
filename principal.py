@@ -63,7 +63,7 @@ def generar_valores(listas_datos):
     """
    import random
    print("Ingrese la cantidad de valores que desea generar: ") 
-   cantidad = pedir_entero()
+   cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
    
    lista = []
    for i in range (0 , cantidad):
