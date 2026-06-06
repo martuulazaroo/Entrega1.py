@@ -31,9 +31,8 @@ Pendientes:
 #----------------------------------------------------------------------------------------------
 # MÓDULOS
 #----------------------------------------------------------------------------------------------
-...
 import random
-
+import time
 
 #----------------------------------------------------------------------------------------------
 # FUNCIONES
@@ -63,13 +62,17 @@ def generar_valores(listas_datos):
     """
    cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
    
+   while cantidad < 2:
+       print("Error: La cantidad debe ser al menos 2. Intente nuevamente.")
+       cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
+       
    lista = []
    for i in range (0 , cantidad):
-        digito = random.randint(1 , 3)
+        opcion = random.randint(1 , 3)
         
-        if digito == 1:
+        if opcion == 1:
             elemento = (random.randint(0,9))
-        elif digito == 2:
+        elif opcion == 2:
             elemento = (random.randint(100 , 999))   
         else:
             elemento = (random.randint(10000 , 99999))   
@@ -97,7 +100,10 @@ def eliminar_repetidos (listas_datos):
      listaSinRepetidos = []
      for elemento in copiaListaConRepetidos:
         if elemento not in listaSinRepetidos:
-            listaSinRepetidos.append(elemento)       
+            listaSinRepetidos.append(elemento)
+
+     elementosEliminados = len(copiaListaConRepetidos) - len(listaSinRepetidos)
+     print(f"\n[Opción 3] Se seleccionó: Eliminar repetidos. Se eliminaron {elementosEliminados} elementos repetidos.")       
      return listaSinRepetidos
 
 def filtrar_valores (lista):
@@ -163,11 +169,8 @@ def desdoblar_lista (lista):
     else:
         hasta_umbral = []
         encima_umbral = []
-        umbral = input("\n Ingrese el numero umbral:\t")
 
-        while not(umbral.isdigit()):
-            umbral = input("\n ERROR - Ingrese el numero umbral:\t")
-        u = int(umbral)
+        u = pedir_entero("\n Ingrese el numero umbral:\t")
 
         for n in lista_trabajo:
         
@@ -179,7 +182,6 @@ def desdoblar_lista (lista):
         
         mostrar_valores(hasta_umbral, f"{base_titulo} HASTA {u}")
         mostrar_valores(encima_umbral, f"{base_titulo} ENCIMA DE {u}")
-
     return
 
 def valores_top_n (lista):
@@ -198,11 +200,7 @@ def valores_top_n (lista):
         if elemento not in lista_trabajo:
             lista_trabajo.append(elemento)
     
-    numero = input("\nIngrese la cantidad de valores mas altos de la lista que desea mostrar:\t")
-
-    while not(numero.isdigit()):
-        numero = input("\nERROR- Ingrese la cantidad de valores mas altos de la lista que desea mostrar\t")
-    n = int(numero)
+    n = pedir_entero("\nIngrese la cantidad de valores mas altos de la lista que desea mostrar:\t")
 
     if n > len(lista_trabajo):
         print(f"ERROR - Se solicito mostrar {n} pero solo existen {len(lista_trabajo)} valores")
@@ -238,8 +236,8 @@ def buscar_max_min (lista):
     print("\n[Opción 7] Se seleccionó: Mostrar máximo y mínimo.")
 
     lista_trabajo = lista.copy()
-    maximo = -1
-    minimo = 100000
+    maximo = lista_trabajo[0]
+    minimo = lista_trabajo[0]
 
     for elemento in lista_trabajo:
         
@@ -326,6 +324,7 @@ def main():
                 print("La lista está vacía. No hay datos para eliminar. Debe generar valores primero (Opción 1).")
                 continue
             listas_datos = eliminar_repetidos (listas_datos)
+            mostrar_valores (listas_datos, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
         elif opcion == "4":   # Opción 4
             if not listas_datos:  # Si la lista está vacía, no se pueden filtrar valores
                 print("La lista está vacía. No hay datos para filtrar. Debe generar valores primero (Opción 1).")
