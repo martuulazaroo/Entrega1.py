@@ -61,7 +61,6 @@ def generar_valores(listas_datos):
     Recibe: lista (list) -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
-   import random 
    cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
    
    lista = []
