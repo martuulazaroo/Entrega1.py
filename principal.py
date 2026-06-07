@@ -79,7 +79,7 @@ def generar_valores(listas_datos):
         lista.append(elemento)  
    return lista
    
-def mostrar_valores (lista, titulo):
+def mostrar_valores (listas_datos, titulo):
     """
     Muestra los valores de la lista en un formato de tabla encolumnada.
     Recibe: 
@@ -88,7 +88,39 @@ def mostrar_valores (lista, titulo):
     Devuelve:
         None: Esta función solo imprime en pantalla y no retorna ningún valor.
     """
-    print(f"\n[Opción 2] Se seleccionó: Mostrar valores - {titulo} (Desarrollo pendiente por completar)")
+    if len(listas_datos) == 0:
+        print("No hay valores generados.")
+        return
+    
+    asteriscos = "*" * 90
+    print(asteriscos)
+    print(titulo)
+    print(asteriscos)
+    
+    letras_columnas = ("A".center(9) + "B".center(9) + "C".center(9) + "D".center(9) + "E".center(9) + "F".center(9) + "G".center(9) + "H".center(9) + "I".center(9) + "J".center(9))
+    print(letras_columnas)
+
+    separador = (("=" * 7).center(9)) * 10
+    print(separador)
+
+    fila_actual = ""
+    contador_columna = 0
+    for i in range (len(listas_datos)):
+        fila_actual += str(listas_datos[i]).center(9)
+        contador_columna += 1
+    if contador_columna == 10:
+        print(fila_actual)
+        fila_actual = ""
+    if contador_columna > 0:
+        print(fila_actual)
+    
+    fecha_hora = time.strftime("( %d-%m-%Y %H:%M:%S)")
+    total_caracteres_fecha_hora = len(fecha_hora)
+    resto_de_caracteres = 90 - total_caracteres_fecha_hora
+
+    print(fecha_hora + resto_de_caracteres * "*")
+
+
 
 def eliminar_repetidos (listas_datos):
      """
