@@ -102,25 +102,27 @@ def mostrar_valores (listas_datos, titulo):
 
     separador = (("=" * 7).center(9)) * 10
     print(separador)
+    print() # Salto de línea para separar el encabezado de la tabla del resto de los datos
 
     fila_actual = ""
     contador_columna = 0
     for i in range (len(listas_datos)):
         fila_actual += str(listas_datos[i]).center(9)
         contador_columna += 1
-    if contador_columna == 10:
-        print(fila_actual)
-        fila_actual = ""
+        if contador_columna == 10:
+            print(fila_actual)
+            print() # Salto de línea para separar cada fila de la tabla
+            fila_actual = ""
+            contador_columna = 0
     if contador_columna > 0:
         print(fila_actual)
+        print() # Salto de línea para separar la última fila de la tabla del mensaje final
     
-    fecha_hora = time.strftime("( %d-%m-%Y %H:%M:%S)")
+    fecha_hora = time.strftime("FIN DEL LISTADO ( %d-%m-%Y %H:%M:%S)")
     total_caracteres_fecha_hora = len(fecha_hora)
     resto_de_caracteres = 90 - total_caracteres_fecha_hora
 
-    print(fecha_hora + resto_de_caracteres * "*")
-
-
+    print(fecha_hora + resto_de_caracteres * "*") 
 
 def eliminar_repetidos (listas_datos):
      """
