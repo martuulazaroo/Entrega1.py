@@ -144,9 +144,62 @@ def filtrar_valores (lista):
     """
     Filtra los números de la lista según diferentes criterios (mayores, menores, pares, impares o en rango).
     Recibe: lista (list) -> La lista original a filtrar.
-    Devuelve: list -> La nueva lista con los valores que cumplen el criterio de filtrado seleccionado por el usuario.
+    Devuelve: None
     """
-    print("\n[Opción 4] Se seleccionó: Filtrar valores (Desarrollo pendiente por completar)")
+    print("\n[Opción 4] Se seleccionó: Filtrar valores")
+    
+    lista_trabajo = lista[:]
+    lista_filtrada = []
+    
+    criterio = input("\nIngrese el criterio de filtrado [M=Mayores que | E=Menores que | R=En rango | P=Pares | I=Impares]: ").upper()
+    
+    while criterio not in ("M", "E", "R", "P", "I"):
+        criterio = input("\nERROR - Ingrese el criterio de filtrado [M=Mayores que | E=Menores que | R=En rango | P=Pares | I=Impares]: ").upper()
+        
+    if criterio == "M":
+        
+        umbral = pedir_entero("Ingrese el valor umbral: ")
+        
+        for numero in lista_trabajo:
+            if numero > umbral:
+                lista_filtrada.append(numero)
+                
+    elif criterio == "E":
+        
+        umbral = pedir_entero("Ingrese el valor umbral: ")
+        
+        for numero in lista_trabajo:
+            if numero < umbral:
+                lista_filtrada.append(numero)
+                
+    elif criterio == "R":
+        
+        limite_inferior = pedir_entero("Ingrese le limite inferior: ")
+        limite_superior = pedir_entero("Ingrese le limite superior: ")
+        
+        while limite_inferior > limite_superior:
+            print("Error: El limite inferior no puede ser mayor al limite superior.")
+            limite_inferior = pedir_entero("Ingrese le limite inferior: ")
+            limite_superior = pedir_entero("Ingrese le limite superior: ")
+            
+            for numero in lista_trabajo:
+                if numero >= limite_inferior and numero <= limite_superior:
+                    lista_filtrada.append(numero)
+                    
+    elif criterio == "P":
+        
+        for numero in lista_trabajo:
+            if numero % 2 == 0:
+                lista_filtrada.append(numero)
+                
+    else:
+        for numero in lista_trabajo:
+            if numero % 2 != 0:
+                lista_filtrada.append(numero)
+                
+    mostrar_valores(lista_filtrada, "Valores del juego de datos (DATOS FILTRADOS)")
+    
+    return
 
 def desdoblar_lista (lista):
     """
