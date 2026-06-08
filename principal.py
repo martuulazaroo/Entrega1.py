@@ -1,9 +1,10 @@
 """
 -----------------------------------------------------------------------------------------------
 Título: TP N° 1 - Entrega1.py
-Fecha: Mayo 2026 
-Autor: 
 
+Fecha: Mayo 2026 
+
+Autor: 
 Lázaro Martina - Legajo: 1238503
 Mastronardi Milena - Legajo: 1233930
 Lacava Giuliana - Legajo: 1239334
@@ -256,7 +257,7 @@ def desdoblar_lista (lista):
         hasta_umbral = []
         encima_umbral = []
 
-        u = pedir_entero("\n Ingrese el numero umbral:\t")
+        u = pedir_entero("\n Ingrese el numero umbral: ")
 
         for n in lista_trabajo:
         
@@ -397,40 +398,43 @@ def main():
                 if confirmacion != "S":
                     print("Manteniendo los valores existentes. No se generarán nuevos valores.")
                     input("Presione ENTER para volver al menú.")
-                    continue
-            listas_datos = generar_valores (listas_datos)
-            print("generación de valores completada.")
+                else:
+                    listas_datos = generar_valores (listas_datos)
+                    print("generación de valores completada.")
+            else:
+                listas_datos = generar_valores (listas_datos)
+                print("generación de valores completada.")
         elif opcion == "2":   # Opción 2
             if not listas_datos:  # Si la lista está vacía, no se puede mostrar nada
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
-                continue
-            mostrar_valores (listas_datos, "Lista Principal")
+            else:
+                mostrar_valores (listas_datos, "Lista Principal")
         elif opcion == "3":   # Opción 3
             if not listas_datos:  # Si la lista está vacía, no se puede eliminar nada
                 print("La lista está vacía. No hay datos para eliminar. Debe generar valores primero (Opción 1).")
-                continue
-            listas_datos = eliminar_repetidos (listas_datos)
-            mostrar_valores (listas_datos, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
+            else:
+                listas_datos = eliminar_repetidos (listas_datos)
+                mostrar_valores (listas_datos, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
         elif opcion == "4":   # Opción 4
             if not listas_datos:  # Si la lista está vacía, no se pueden filtrar valores
                 print("La lista está vacía. No hay datos para filtrar. Debe generar valores primero (Opción 1).")
-                continue
-            filtrar_valores (listas_datos)
+            else:
+                filtrar_valores (listas_datos) 
         elif opcion == "5":   # Opción 5
             if not listas_datos:  # Si la lista está vacía, no se puede desdoblar
                 print("La lista está vacía. No hay datos para desdoblar. Debe generar valores primero (Opción 1).")
-                continue
-            desdoblar_lista (listas_datos) 
+            else: 
+                desdoblar_lista (listas_datos) 
         elif opcion == "6":   # Opción 6
             if not listas_datos:  # Si la lista está vacía, no se pueden mostrar los valores top N
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
-                continue
-            valores_top_n (listas_datos)
+            else:
+                valores_top_n (listas_datos)
         elif opcion == "7":   # Opción 7
             if not listas_datos:  # Si la lista está vacía, no se pueden mostrar el máximo y mínimo
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
-                continue
-            buscar_max_min (listas_datos)
+            else:
+                buscar_max_min (listas_datos)
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
 
