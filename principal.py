@@ -174,20 +174,19 @@ def filtrar_valores (lista):
                 
     elif criterio == "R":
         
-        limite_inferior = pedir_entero("Ingrese le limite inferior: ")
-        limite_superior = pedir_entero("Ingrese le limite superior: ")
+        limite_inferior = pedir_entero("Ingrese el limite inferior: ")
+        limite_superior = pedir_entero("Ingrese el limite superior: ")
         
         while limite_inferior > limite_superior:
             print("Error: El limite inferior no puede ser mayor al limite superior.")
-            limite_inferior = pedir_entero("Ingrese le limite inferior: ")
-            limite_superior = pedir_entero("Ingrese le limite superior: ")
+            limite_inferior = pedir_entero("Ingrese el limite inferior: ")
+            limite_superior = pedir_entero("Ingrese el limite superior: ")
             
             for numero in lista_trabajo:
                 if numero >= limite_inferior and numero <= limite_superior:
                     lista_filtrada.append(numero)
                     
     elif criterio == "P":
-        
         for numero in lista_trabajo:
             if numero % 2 == 0:
                 lista_filtrada.append(numero)
@@ -212,10 +211,10 @@ def desdoblar_lista (lista):
     lista_trabajo = lista.copy()
     base_titulo = "VALORES DEL JUEGO DE DATOS (DATOS DESDOBLADOS) -"
 
-    criterio = input("\nIngrese le cirterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
+    criterio = input("\nIngrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
 
     while (criterio != 'P') and (criterio != 'C') and (criterio != 'U'):
-        criterio = input("\nERROR - Ingrese le cirterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
+        criterio = input("\nERROR - Ingrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
 
     if criterio == 'P':
         pares = []
