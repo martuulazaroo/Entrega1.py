@@ -369,13 +369,13 @@ def main():
             print("---------------------------")
             print("MENÚ DEL PROGRAMA           ")
             print("---------------------------")
-            print("[1] Opción 1")
-            print("[2] Opción 2")
-            print("[3] Opción 3")
-            print("[4] Opción 4")
-            print("[5] Opción 5")
-            print("[6] Opción 6")
-            print("[7] Opción 7")
+            print("[1] Generar valores")
+            print("[2] Mostrar valores")
+            print("[3] Eliminar valores repetidos")
+            print("[4] Filtrar valores")
+            print("[5] Desdoblar valores")
+            print("[6] Valores Top N")
+            print("[7] Valores máximos y mínimos")
             print("---------------------------")
             print("[0] Salir del programa")
             print("---------------------------")
@@ -392,6 +392,7 @@ def main():
         if opcion == "0": # Opción salir del programa
             print("Saliendo del programa.")
             exit() # También puede ser sys.exit() para lo cual hay que importar el módulo sys
+        
         elif opcion == "1":   # Opción 1
             if listas_datos:  # Si la lista ya tiene datos, se le pregunta al usuario si desea reemplazarlos o mantenerlos
                 print("Ya existen valores generados en la lista.")
@@ -405,37 +406,44 @@ def main():
             else:
                 listas_datos = generar_valores (listas_datos)
                 print("generación de valores completada.")
+        
         elif opcion == "2":   # Opción 2
             if not listas_datos:  # Si la lista está vacía, no se puede mostrar nada
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
             else:
                 mostrar_valores (listas_datos, "Lista Principal")
+        
         elif opcion == "3":   # Opción 3
             if not listas_datos:  # Si la lista está vacía, no se puede eliminar nada
                 print("La lista está vacía. No hay datos para eliminar. Debe generar valores primero (Opción 1).")
             else:
                 listas_datos = eliminar_repetidos (listas_datos)
                 mostrar_valores (listas_datos, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
+        
         elif opcion == "4":   # Opción 4
             if not listas_datos:  # Si la lista está vacía, no se pueden filtrar valores
                 print("La lista está vacía. No hay datos para filtrar. Debe generar valores primero (Opción 1).")
             else:
                 filtrar_valores (listas_datos) 
+        
         elif opcion == "5":   # Opción 5
             if not listas_datos:  # Si la lista está vacía, no se puede desdoblar
                 print("La lista está vacía. No hay datos para desdoblar. Debe generar valores primero (Opción 1).")
             else: 
                 desdoblar_lista (listas_datos) 
+        
         elif opcion == "6":   # Opción 6
             if not listas_datos:  # Si la lista está vacía, no se pueden mostrar los valores top N
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
             else:
                 valores_top_n (listas_datos)
+        
         elif opcion == "7":   # Opción 7
             if not listas_datos:  # Si la lista está vacía, no se pueden mostrar el máximo y mínimo
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
             else:
                 buscar_max_min (listas_datos)
+        
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
 
