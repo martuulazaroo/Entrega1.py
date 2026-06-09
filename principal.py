@@ -68,15 +68,15 @@ def generar_valores(listas_datos):
        cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
        
    lista = []
-   for i in range (0 , cantidad):
+   for i in range (0 , cantidad): # El bucle se repetirá la cantidad de veces que el usuario haya indicado, generando un número al azar en cada iteración y agregándolo a la lista.
         opcion = random.randint(1 , 3)
         
         if opcion == 1:
-            elemento = (random.randint(0,9))
+            elemento = (random.randint(0,9)) #1 dígito va de 0 a 9, ambos inclusive
         elif opcion == 2:
-            elemento = (random.randint(100 , 999))   
+            elemento = (random.randint(100 , 999)) #3 dígitos va de 100 a 999, ambos inclusive  
         else:
-            elemento = (random.randint(10000 , 99999))   
+            elemento = (random.randint(10000 , 99999)) #5 dígitos va de 10000 a 99999, ambos inclusive 
         lista.append(elemento)  
    return lista
    
@@ -108,15 +108,15 @@ def mostrar_valores (listas_datos, titulo):
     fila_actual = ""
     contador_columna = 0
 
-    for i in range (len(listas_datos)):
-        fila_actual += str(listas_datos[i]).center(9)
+    for i in range (len(listas_datos)): 
+        fila_actual += str(listas_datos[i]).center(9) # Agrega el número actual a la fila, centrado en un espacio de 9 caracteres para mantener la alineación con el encabezado de las columnas.
         contador_columna += 1
-        if contador_columna == 10:
+        if contador_columna == 10: # Cada vez que se hayan agregado 10 números a la fila, se imprime la fila completa y se reinicia para comenzar a llenar la siguiente fila.
             print(fila_actual)
             print() # Salto de línea para separar cada fila de la tabla
             fila_actual = ""
             contador_columna = 0
-    if contador_columna > 0:
+    if contador_columna > 0: # Si al finalizar el bucle hay números en la fila actual que no se han impreso (porque no se llegó a 10), se imprime esa última fila.
         print(fila_actual)
         print() # Salto de línea para separar la última fila de la tabla del mensaje final
     
@@ -134,11 +134,11 @@ def eliminar_repetidos (listas_datos):
     """
      copiaListaConRepetidos = listas_datos[:]
      listaSinRepetidos = []
-     for elemento in copiaListaConRepetidos:
+     for elemento in copiaListaConRepetidos: #Recorremos la lista y solo añadimos el elemento si no fue agregado previamente (mantiene el orden original)
         if elemento not in listaSinRepetidos:
             listaSinRepetidos.append(elemento)
 
-     elementosEliminados = len(copiaListaConRepetidos) - len(listaSinRepetidos)
+     elementosEliminados = len(copiaListaConRepetidos) - len(listaSinRepetidos) #Calculamos la diferencia para informar cuántos elementos se eliminaron
      print(f"\n[Opción 3] Se seleccionó: Eliminar repetidos. Se eliminaron {elementosEliminados} elementos repetidos.")       
      return listaSinRepetidos
 
@@ -184,9 +184,9 @@ def filtrar_valores (lista):
             limite_inferior = pedir_entero("Ingrese el limite inferior: ")
             limite_superior = pedir_entero("Ingrese el limite superior: ")
             
-            for numero in lista_trabajo:
-                if numero >= limite_inferior and numero <= limite_superior:
-                    lista_filtrada.append(numero)
+        for numero in lista_trabajo:
+            if numero >= limite_inferior and numero <= limite_superior:
+                lista_filtrada.append(numero)
                     
     elif criterio == "P":
         for numero in lista_trabajo:
@@ -280,7 +280,7 @@ def valores_top_n (lista):
     """
     print("\n[Opción 6] Se seleccionó: Valores Top N")
 
-    lista_copia = lista.copy()
+    lista_copia = lista.copy() #Creamos una lista auxiliar con valores únicos para evitar que los repetidos alteren el ranking
     lista_trabajo = []
     top_n = []
 
@@ -290,22 +290,22 @@ def valores_top_n (lista):
     
     n = pedir_entero("\nIngrese la cantidad de valores mas altos de la lista que desea mostrar:\t")
 
-    if n > len(lista_trabajo):
+    if n > len(lista_trabajo): # Si el usuario pide mostrar más valores de los que existen en la lista, se le informa del error y se ajusta "n" al máximo posible.
         print(f"ERROR - Se solicito mostrar {n} pero solo existen {len(lista_trabajo)} valores")
         n = len(lista_trabajo)
 
-    for k in range(0,n):
+    for k in range(0,n): # El bucle se repetirá "n" veces, cada vez buscando el máximo de la lista de trabajo, agregándolo a la lista top_n y eliminándolo de la lista de trabajo para que en la siguiente iteración se busque el siguiente máximo.
         maximo = lista_trabajo[0]
         pos = 0
 
-        for i, num in enumerate(lista_trabajo):
+        for i, num in enumerate(lista_trabajo): 
 
             if num > maximo:
                 maximo = num
                 pos = i
 
-        top_n.append(maximo)
-        del lista_trabajo[pos]
+        top_n.append(maximo) 
+        del lista_trabajo[pos] # Eliminamos el máximo encontrado para que en la siguiente iteración se encuentre el siguiente máximo entre los valores restantes.
     
     print("\n"+ "*"*50)
     print(f"VALORES DEL JUEGO DE DATOS (DATOS TOP {n})")
@@ -327,14 +327,14 @@ def buscar_max_min (lista):
     maximo = lista_trabajo[0]
     minimo = lista_trabajo[0]
 
-    for elemento in lista_trabajo:
+    for elemento in lista_trabajo: # Recorremos la lista para encontrar el máximo y el mínimo, comparando cada elemento con el máximo y mínimo actuales y actualizándolos si se encuentra un valor mayor o menor respectivamente.
         
         if elemento >= maximo:
             maximo = elemento
         if elemento <= minimo:
             minimo = elemento
     
-    for i,elemento in enumerate(lista_trabajo):
+    for i,elemento in enumerate(lista_trabajo): # Recorremos la lista nuevamente para modificar la forma en que se muestran el máximo y el mínimo, utilizando corchetes para el máximo, paréntesis para el mínimo y ambos para el caso en que el máximo y el mínimo sean iguales.
         if (elemento == maximo) and (elemento == minimo):
             lista_trabajo[i] = f"<{elemento}>"
         elif elemento == maximo:
