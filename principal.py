@@ -58,7 +58,7 @@ def pedir_entero (mensaje):
 def generar_valores(listas_datos):
    """
     Genera una lista de números enteros al azar de 1, 3 y 5 dígitos.
-    Recibe: lista (list) -> La lista original.
+    Recibe: listas_datos -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
    cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
@@ -84,7 +84,7 @@ def mostrar_valores (listas_datos, titulo):
     """
     Muestra los valores de la lista en un formato de tabla encolumnada.
     Recibe: 
-        lista (list) -> La lista a mostrar.
+        listas_datos -> La lista a mostrar.
         titulo (str) -> El título variable de la tabla, ya que cambiará según quién lo llame.    
     Devuelve:
         None: Esta función solo imprime en pantalla y no retorna ningún valor.
@@ -107,6 +107,7 @@ def mostrar_valores (listas_datos, titulo):
 
     fila_actual = ""
     contador_columna = 0
+
     for i in range (len(listas_datos)):
         fila_actual += str(listas_datos[i]).center(9)
         contador_columna += 1
@@ -128,7 +129,7 @@ def mostrar_valores (listas_datos, titulo):
 def eliminar_repetidos (listas_datos):
      """
     Elimina los números repetidos de la lista sin cambiar el orden original.
-    Recibe: lista (list) -> La lista original con posibles valores repetidos.
+    Recibe: listas_datos -> La lista original con posibles valores repetidos.
     Devuelve: list -> La nueva lista sin valores repetidos, manteniendo el orden original.
     """
      copiaListaConRepetidos = listas_datos[:]
@@ -144,7 +145,7 @@ def eliminar_repetidos (listas_datos):
 def filtrar_valores (lista):
     """
     Filtra los números de la lista según diferentes criterios (mayores, menores, pares, impares o en rango).
-    Recibe: lista (list) -> La lista original a filtrar.
+    Recibe: listas_datos -> La lista original a filtrar.
     Devuelve: None
     """
     print("\n[Opción 4] Se seleccionó: Filtrar valores")
@@ -204,7 +205,7 @@ def filtrar_valores (lista):
 def desdoblar_lista (lista):
     """
     Desdobla la lista original en varias listas según diferentes criterios (por ejemplo, por cantidad de dígitos).
-    Recibe: lista (list) -> La lista original a desdoblar.
+    Recibe: listas_datos -> La lista original a desdoblar.
     Devuelve: None (Las listas resultantes se muestran en formato de tabla con la función mostrar_tabla)
     """
     print("\n[Opción 5] Se seleccionó: Desdoblar lista")
@@ -274,7 +275,7 @@ def desdoblar_lista (lista):
 def valores_top_n (lista):
     """
     Muestra un ranking con los "N" valores más altos de la lista.
-    Recibe: lista (list) -> La lista original de la cual se extraerán los valores más altos.
+    Recibe: listas_datos -> La lista original de la cual se extraerán los valores más altos.
     Devuelve: None (La lista generada top_n se muestra llamando a la funcion mostrar_valores)
     """
     print("\n[Opción 6] Se seleccionó: Valores Top N")
@@ -317,7 +318,7 @@ def valores_top_n (lista):
 def buscar_max_min (lista):
     """
     Busca el máximo y el mínimo de la lista y los muestra destacados en la tabla.
-    Recibe: lista (list) -> La lista original de la cual se buscarán el máximo y el mínimo.
+    Recibe: listas_datos -> La lista original de la cual se buscarán el máximo y el mínimo.
     Devuelve: None (Esta función solo muestra los valores destacados en pantalla.)
     """
     print("\n[Opción 7] Se seleccionó: Mostrar máximo y mínimo.")
