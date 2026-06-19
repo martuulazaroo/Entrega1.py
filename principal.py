@@ -56,30 +56,30 @@ def pedir_entero (mensaje):
             print("Error: Debe ingresar un número entero válido (solo digitos). Intente nuevamente.")
 
 def generar_valores(listas_datos):
-   """
+    """
     Genera una lista de números enteros al azar de 1, 3 y 5 dígitos.
     Recibe: listas_datos -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
-   cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
-   
-   while cantidad < 2:
-       print("Error: La cantidad debe ser al menos 2. Intente nuevamente.")
-       cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
-       
-   lista = []
-   for i in range (0 , cantidad): # El bucle se repetirá la cantidad de veces que el usuario haya indicado, generando un número al azar en cada iteración y agregándolo a la lista.
-        opcion = random.randint(1 , 3)
+    cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
+    
+    while cantidad < 2:
+        print("Error: La cantidad debe ser al menos 2. Intente nuevamente.")
+        cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
+            
+    lista = []
+    for i in range(0, cantidad): # El bucle se repetirá la cantidad de veces que el usuario haya indicado, generando un número al azar en cada iteración y agregándolo a la lista.
+        opcion = random.randint(1, 3)
         
         if opcion == 1:
-            elemento = (random.randint(0,9)) #1 dígito va de 0 a 9, ambos inclusive
+            elemento = random.randint(0, 9) #1 dígito va de 0 a 9, ambos inclusive
         elif opcion == 2:
-            elemento = (random.randint(100 , 999)) #3 dígitos va de 100 a 999, ambos inclusive  
+            elemento = random.randint(100, 999) #3 dígitos va de 100 a 999, ambos inclusive
         else:
-            elemento = (random.randint(10000 , 99999)) #5 dígitos va de 10000 a 99999, ambos inclusive 
-        lista.append(elemento)  
-   return lista
-   
+            elemento = random.randint(10000, 99999) #5 dígitos va de 10000 a 99999, ambos inclusive
+        lista.append(elemento)
+    return lista
+    
 def mostrar_valores (listas_datos, titulo):
     """
     Muestra los valores de la lista en un formato de tabla encolumnada.
@@ -127,20 +127,20 @@ def mostrar_valores (listas_datos, titulo):
     print(fecha_hora + resto_de_caracteres * "*") 
 
 def eliminar_repetidos (listas_datos):
-     """
+    """
     Elimina los números repetidos de la lista sin cambiar el orden original.
     Recibe: listas_datos -> La lista original con posibles valores repetidos.
     Devuelve: list -> La nueva lista sin valores repetidos, manteniendo el orden original.
     """
-     copiaListaConRepetidos = listas_datos[:]
-     listaSinRepetidos = []
-     for elemento in copiaListaConRepetidos: #Recorremos la lista y solo añadimos el elemento si no fue agregado previamente (mantiene el orden original)
+    copiaListaConRepetidos = listas_datos[:]
+    listaSinRepetidos = []
+    for elemento in copiaListaConRepetidos: #Recorremos la lista y solo añadimos el elemento si no fue agregado previamente (mantiene el orden original)
         if elemento not in listaSinRepetidos:
             listaSinRepetidos.append(elemento)
-
-     elementosEliminados = len(copiaListaConRepetidos) - len(listaSinRepetidos) #Calculamos la diferencia para informar cuántos elementos se eliminaron
-     print(f"\n[Opción 3] Se seleccionó: Eliminar repetidos. Se eliminaron {elementosEliminados} elementos repetidos.")       
-     return listaSinRepetidos
+    
+    elementosEliminados = len(copiaListaConRepetidos) - len(listaSinRepetidos) #Calculamos la diferencia para informar cuántos elementos se eliminaron
+    print(f"\n[Opción 3] Se seleccionó: Eliminar repetidos. Se eliminaron {elementosEliminados} elementos repetidos.")
+    return listaSinRepetidos
 
 def filtrar_valores (lista):
     """
@@ -397,12 +397,13 @@ def main():
             if listas_datos:  # Si la lista ya tiene datos, se le pregunta al usuario si desea reemplazarlos o mantenerlos
                 print("Ya existen valores generados en la lista.")
                 confirmacion = input("¿Desea reemplazar los valores existentes? (S/N): ").strip().upper()
-                if confirmacion != "S":
-                    print("Manteniendo los valores existentes. No se generarán nuevos valores.")
-                    input("Presione ENTER para volver al menú.")
-                else:
+                while confirmacion not in ("S", "N"):
+                    confirmacion = input("Opción inválida. ¿Desea reemplazar los valores existentes? (S/N): ").strip().upper()
+                if confirmacion == "S":
                     listas_datos = generar_valores (listas_datos)
                     print("generación de valores completada.")
+                else:
+                    print("Se mantendrán los valores existentes. No se generarán nuevos valores.")
             else:
                 listas_datos = generar_valores (listas_datos)
                 print("generación de valores completada.")
@@ -417,8 +418,8 @@ def main():
             if not listas_datos:  # Si la lista está vacía, no se puede eliminar nada
                 print("La lista está vacía. No hay datos para eliminar. Debe generar valores primero (Opción 1).")
             else:
-                listas_datos = eliminar_repetidos (listas_datos)
-                mostrar_valores (listas_datos, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
+                lista_sin_duplicados = eliminar_repetidos (listas_datos)
+                mostrar_valores (lista_sin_duplicados, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
         
         elif opcion == "4":   # Opción 4
             if not listas_datos:  # Si la lista está vacía, no se pueden filtrar valores
