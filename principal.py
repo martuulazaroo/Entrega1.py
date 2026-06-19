@@ -213,10 +213,10 @@ def desdoblar_lista (lista):
     lista_trabajo = lista.copy()
     base_titulo = "VALORES DEL JUEGO DE DATOS (DATOS DESDOBLADOS) -"
 
-    criterio = input("\nIngrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
+    criterio = input("\nIngrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]: ").upper()
 
     while (criterio != 'P') and (criterio != 'C') and (criterio != 'U'):
-        criterio = input("\nERROR - Ingrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
+        criterio = input("\nERROR - Ingrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]: ").upper()
 
     if criterio == 'P':
         pares = []
@@ -258,7 +258,7 @@ def desdoblar_lista (lista):
         hasta_umbral = []
         encima_umbral = []
 
-        u = pedir_entero("\n Ingrese el numero umbral: ")
+        u = pedir_entero("\nIngrese el numero umbral: ")
 
         for n in lista_trabajo:
         
