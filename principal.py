@@ -56,35 +56,35 @@ def pedir_entero (mensaje):
             print("Error: Debe ingresar un número entero válido (solo digitos). Intente nuevamente.")
 
 def generar_valores(listas_datos):
-   """
+    """
     Genera una lista de números enteros al azar de 1, 3 y 5 dígitos.
-    Recibe: lista (list) -> La lista original.
+    Recibe: listas_datos -> La lista original.
     Devuelve: list -> La nueva lista con los valores generados.
     """
-   cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
-   
-   while cantidad < 2:
-       print("Error: La cantidad debe ser al menos 2. Intente nuevamente.")
-       cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
-       
-   lista = []
-   for i in range (0 , cantidad):
-        opcion = random.randint(1 , 3)
+    cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
+    
+    while cantidad < 2:
+        print("Error: La cantidad debe ser al menos 2. Intente nuevamente.")
+        cantidad = pedir_entero("Ingrese la cantidad de valores que desea generar: ")
+            
+    lista = []
+    for i in range(0, cantidad): # El bucle se repetirá la cantidad de veces que el usuario haya indicado, generando un número al azar en cada iteración y agregándolo a la lista.
+        opcion = random.randint(1, 3)
         
         if opcion == 1:
-            elemento = (random.randint(0,9))
+            elemento = random.randint(0, 9) #1 dígito va de 0 a 9, ambos inclusive
         elif opcion == 2:
-            elemento = (random.randint(100 , 999))   
+            elemento = random.randint(100, 999) #3 dígitos va de 100 a 999, ambos inclusive
         else:
-            elemento = (random.randint(10000 , 99999))   
-        lista.append(elemento)  
-   return lista
-   
+            elemento = random.randint(10000, 99999) #5 dígitos va de 10000 a 99999, ambos inclusive
+        lista.append(elemento)
+    return lista
+    
 def mostrar_valores (listas_datos, titulo):
     """
     Muestra los valores de la lista en un formato de tabla encolumnada.
     Recibe: 
-        lista (list) -> La lista a mostrar.
+        listas_datos -> La lista a mostrar.
         titulo (str) -> El título variable de la tabla, ya que cambiará según quién lo llame.    
     Devuelve:
         None: Esta función solo imprime en pantalla y no retorna ningún valor.
@@ -107,15 +107,16 @@ def mostrar_valores (listas_datos, titulo):
 
     fila_actual = ""
     contador_columna = 0
-    for i in range (len(listas_datos)):
-        fila_actual += str(listas_datos[i]).center(9)
+
+    for i in range (len(listas_datos)): 
+        fila_actual += str(listas_datos[i]).center(9) # Agrega el número actual a la fila, centrado en un espacio de 9 caracteres para mantener la alineación con el encabezado de las columnas.
         contador_columna += 1
-        if contador_columna == 10:
+        if contador_columna == 10: # Cada vez que se hayan agregado 10 números a la fila, se imprime la fila completa y se reinicia para comenzar a llenar la siguiente fila.
             print(fila_actual)
             print() # Salto de línea para separar cada fila de la tabla
             fila_actual = ""
             contador_columna = 0
-    if contador_columna > 0:
+    if contador_columna > 0: # Si al finalizar el bucle hay números en la fila actual que no se han impreso (porque no se llegó a 10), se imprime esa última fila.
         print(fila_actual)
         print() # Salto de línea para separar la última fila de la tabla del mensaje final
     
@@ -126,25 +127,25 @@ def mostrar_valores (listas_datos, titulo):
     print(fecha_hora + resto_de_caracteres * "*") 
 
 def eliminar_repetidos (listas_datos):
-     """
+    """
     Elimina los números repetidos de la lista sin cambiar el orden original.
-    Recibe: lista (list) -> La lista original con posibles valores repetidos.
+    Recibe: listas_datos -> La lista original con posibles valores repetidos.
     Devuelve: list -> La nueva lista sin valores repetidos, manteniendo el orden original.
     """
-     copiaListaConRepetidos = listas_datos[:]
-     listaSinRepetidos = []
-     for elemento in copiaListaConRepetidos:
+    copiaListaConRepetidos = listas_datos[:]
+    listaSinRepetidos = []
+    for elemento in copiaListaConRepetidos: #Recorremos la lista y solo añadimos el elemento si no fue agregado previamente (mantiene el orden original)
         if elemento not in listaSinRepetidos:
             listaSinRepetidos.append(elemento)
-
-     elementosEliminados = len(copiaListaConRepetidos) - len(listaSinRepetidos)
-     print(f"\n[Opción 3] Se seleccionó: Eliminar repetidos. Se eliminaron {elementosEliminados} elementos repetidos.")       
-     return listaSinRepetidos
+    
+    elementosEliminados = len(copiaListaConRepetidos) - len(listaSinRepetidos) #Calculamos la diferencia para informar cuántos elementos se eliminaron
+    print(f"\n[Opción 3] Se seleccionó: Eliminar repetidos. Se eliminaron {elementosEliminados} elementos repetidos.")
+    return listaSinRepetidos
 
 def filtrar_valores (lista):
     """
     Filtra los números de la lista según diferentes criterios (mayores, menores, pares, impares o en rango).
-    Recibe: lista (list) -> La lista original a filtrar.
+    Recibe: listas_datos -> La lista original a filtrar.
     Devuelve: None
     """
     print("\n[Opción 4] Se seleccionó: Filtrar valores")
@@ -183,9 +184,9 @@ def filtrar_valores (lista):
             limite_inferior = pedir_entero("Ingrese el limite inferior: ")
             limite_superior = pedir_entero("Ingrese el limite superior: ")
             
-            for numero in lista_trabajo:
-                if numero >= limite_inferior and numero <= limite_superior:
-                    lista_filtrada.append(numero)
+        for numero in lista_trabajo:
+            if numero >= limite_inferior and numero <= limite_superior:
+                lista_filtrada.append(numero)
                     
     elif criterio == "P":
         for numero in lista_trabajo:
@@ -204,7 +205,7 @@ def filtrar_valores (lista):
 def desdoblar_lista (lista):
     """
     Desdobla la lista original en varias listas según diferentes criterios (por ejemplo, por cantidad de dígitos).
-    Recibe: lista (list) -> La lista original a desdoblar.
+    Recibe: listas_datos -> La lista original a desdoblar.
     Devuelve: None (Las listas resultantes se muestran en formato de tabla con la función mostrar_tabla)
     """
     print("\n[Opción 5] Se seleccionó: Desdoblar lista")
@@ -212,10 +213,10 @@ def desdoblar_lista (lista):
     lista_trabajo = lista.copy()
     base_titulo = "VALORES DEL JUEGO DE DATOS (DATOS DESDOBLADOS) -"
 
-    criterio = input("\nIngrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
+    criterio = input("\nIngrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]: ").upper()
 
     while (criterio != 'P') and (criterio != 'C') and (criterio != 'U'):
-        criterio = input("\nERROR - Ingrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]\t").upper()
+        criterio = input("\nERROR - Ingrese el criterio de desdoblamiento [P=Pares/Impares | C=Por cantidad de cifras | U=Por valor umbral]: ").upper()
 
     if criterio == 'P':
         pares = []
@@ -257,7 +258,7 @@ def desdoblar_lista (lista):
         hasta_umbral = []
         encima_umbral = []
 
-        u = pedir_entero("\n Ingrese el numero umbral: ")
+        u = pedir_entero("\nIngrese el numero umbral: ")
 
         for n in lista_trabajo:
         
@@ -274,12 +275,12 @@ def desdoblar_lista (lista):
 def valores_top_n (lista):
     """
     Muestra un ranking con los "N" valores más altos de la lista.
-    Recibe: lista (list) -> La lista original de la cual se extraerán los valores más altos.
+    Recibe: listas_datos -> La lista original de la cual se extraerán los valores más altos.
     Devuelve: None (La lista generada top_n se muestra llamando a la funcion mostrar_valores)
     """
     print("\n[Opción 6] Se seleccionó: Valores Top N")
 
-    lista_copia = lista.copy()
+    lista_copia = lista.copy() #Creamos una lista auxiliar con valores únicos para evitar que los repetidos alteren el ranking
     lista_trabajo = []
     top_n = []
 
@@ -289,22 +290,22 @@ def valores_top_n (lista):
     
     n = pedir_entero("\nIngrese la cantidad de valores mas altos de la lista que desea mostrar:\t")
 
-    if n > len(lista_trabajo):
+    if n > len(lista_trabajo): # Si el usuario pide mostrar más valores de los que existen en la lista, se le informa del error y se ajusta "n" al máximo posible.
         print(f"ERROR - Se solicito mostrar {n} pero solo existen {len(lista_trabajo)} valores")
         n = len(lista_trabajo)
 
-    for k in range(0,n):
+    for k in range(0,n): # El bucle se repetirá "n" veces, cada vez buscando el máximo de la lista de trabajo, agregándolo a la lista top_n y eliminándolo de la lista de trabajo para que en la siguiente iteración se busque el siguiente máximo.
         maximo = lista_trabajo[0]
         pos = 0
 
-        for i, num in enumerate(lista_trabajo):
+        for i, num in enumerate(lista_trabajo): 
 
             if num > maximo:
                 maximo = num
                 pos = i
 
-        top_n.append(maximo)
-        del lista_trabajo[pos]
+        top_n.append(maximo) 
+        del lista_trabajo[pos] # Eliminamos el máximo encontrado para que en la siguiente iteración se encuentre el siguiente máximo entre los valores restantes.
     
     print("\n"+ "*"*50)
     print(f"VALORES DEL JUEGO DE DATOS (DATOS TOP {n})")
@@ -317,7 +318,7 @@ def valores_top_n (lista):
 def buscar_max_min (lista):
     """
     Busca el máximo y el mínimo de la lista y los muestra destacados en la tabla.
-    Recibe: lista (list) -> La lista original de la cual se buscarán el máximo y el mínimo.
+    Recibe: listas_datos -> La lista original de la cual se buscarán el máximo y el mínimo.
     Devuelve: None (Esta función solo muestra los valores destacados en pantalla.)
     """
     print("\n[Opción 7] Se seleccionó: Mostrar máximo y mínimo.")
@@ -326,14 +327,14 @@ def buscar_max_min (lista):
     maximo = lista_trabajo[0]
     minimo = lista_trabajo[0]
 
-    for elemento in lista_trabajo:
+    for elemento in lista_trabajo: # Recorremos la lista para encontrar el máximo y el mínimo, comparando cada elemento con el máximo y mínimo actuales y actualizándolos si se encuentra un valor mayor o menor respectivamente.
         
         if elemento >= maximo:
             maximo = elemento
         if elemento <= minimo:
             minimo = elemento
     
-    for i,elemento in enumerate(lista_trabajo):
+    for i,elemento in enumerate(lista_trabajo): # Recorremos la lista nuevamente para modificar la forma en que se muestran el máximo y el mínimo, utilizando corchetes para el máximo, paréntesis para el mínimo y ambos para el caso en que el máximo y el mínimo sean iguales.
         if (elemento == maximo) and (elemento == minimo):
             lista_trabajo[i] = f"<{elemento}>"
         elif elemento == maximo:
@@ -516,13 +517,13 @@ def main():
             print("---------------------------")
             print("MENÚ DEL PROGRAMA           ")
             print("---------------------------")
-            print("[1] Opción 1")
-            print("[2] Opción 2")
-            print("[3] Opción 3")
-            print("[4] Opción 4")
-            print("[5] Opción 5")
-            print("[6] Opción 6")
-            print("[7] Opción 7")
+            print("[1] Generar valores")
+            print("[2] Mostrar valores")
+            print("[3] Eliminar valores repetidos")
+            print("[4] Filtrar valores")
+            print("[5] Desdoblar valores")
+            print("[6] Valores Top N")
+            print("[7] Valores máximos y mínimos")
             print("---------------------------")
             print("[0] Salir del programa")
             print("---------------------------")
@@ -539,45 +540,53 @@ def main():
         if opcion == "0": # Opción salir del programa
             print("Saliendo del programa.")
             exit() # También puede ser sys.exit() para lo cual hay que importar el módulo sys
+        
         elif opcion == "1":   # Opción 1
             if listas_datos:  # Si la lista ya tiene datos, se le pregunta al usuario si desea reemplazarlos o mantenerlos
                 print("Ya existen valores generados en la lista.")
                 confirmacion = input("¿Desea reemplazar los valores existentes? (S/N): ").strip().upper()
-                if confirmacion != "S":
-                    print("Manteniendo los valores existentes. No se generarán nuevos valores.")
-                    input("Presione ENTER para volver al menú.")
-                else:
+                while confirmacion not in ("S", "N"):
+                    confirmacion = input("Opción inválida. ¿Desea reemplazar los valores existentes? (S/N): ").strip().upper()
+                if confirmacion == "S":
                     listas_datos = generar_valores (listas_datos)
                     print("generación de valores completada.")
+                else:
+                    print("Se mantendrán los valores existentes. No se generarán nuevos valores.")
             else:
                 listas_datos = generar_valores (listas_datos)
                 print("generación de valores completada.")
+        
         elif opcion == "2":   # Opción 2
             if not listas_datos:  # Si la lista está vacía, no se puede mostrar nada
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
             else:
                 mostrar_valores (listas_datos, "Lista Principal")
+        
         elif opcion == "3":   # Opción 3
             if not listas_datos:  # Si la lista está vacía, no se puede eliminar nada
                 print("La lista está vacía. No hay datos para eliminar. Debe generar valores primero (Opción 1).")
             else:
-                listas_datos = eliminar_repetidos (listas_datos)
-                mostrar_valores (listas_datos, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
+                lista_sin_duplicados = eliminar_repetidos (listas_datos)
+                mostrar_valores (lista_sin_duplicados, "VALORES DEL JUEGO DE DATOS (DATOS SIN REPETIDOS)")
+        
         elif opcion == "4":   # Opción 4
             if not listas_datos:  # Si la lista está vacía, no se pueden filtrar valores
                 print("La lista está vacía. No hay datos para filtrar. Debe generar valores primero (Opción 1).")
             else:
                 filtrar_valores (listas_datos) 
+        
         elif opcion == "5":   # Opción 5
             if not listas_datos:  # Si la lista está vacía, no se puede desdoblar
                 print("La lista está vacía. No hay datos para desdoblar. Debe generar valores primero (Opción 1).")
             else: 
                 desdoblar_lista (listas_datos) 
+        
         elif opcion == "6":   # Opción 6
             if not listas_datos:  # Si la lista está vacía, no se pueden mostrar los valores top N
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
             else:
                 valores_top_n (listas_datos)
+        
         elif opcion == "7":   # Opción 7
             if not listas_datos:  # Si la lista está vacía, no se pueden mostrar el máximo y mínimo
                 print("La lista está vacía. No hay datos para mostrar. Debe generar valores primero (Opción 1).")
@@ -593,6 +602,7 @@ def main():
                 print("La lista está vacía. No hay datos para buscar. Debe generar valores primero (Opción 1).")
             else:
                 buscar_valor (listas_datos)
+        
         input("\nPresione ENTER para volver al menú.")
         print("\n\n")
 
