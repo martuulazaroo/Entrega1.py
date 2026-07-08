@@ -451,11 +451,11 @@ def ordenar_valores (lista):
     
     elif criterio == "I":
         lista_ordenada = ordenamientoPorInsercion(lista_trabajo)
-        mensaje = "ORDENAMIENTO POR INSERCION"
+        mensaje = "BÚSQUEDA INSERCIÓN"
    
     else:
         lista_ordenada = ordenamientoPorSeleccion(lista_trabajo)
-        mensaje = "ORDENAMIENTO POR SELECCION"
+        mensaje = "BÚSQUEDA SELECCIÓN"
     
     fin=time.perf_counter()
 
