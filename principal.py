@@ -417,7 +417,7 @@ def busquedaBinariaTodasPosiciones(lista, valor):
             i += 1
 
     return posiciones
-    return
+
 def busquedaSecuencialTodasPosiciones(lista, valor):
     lista_trabajo = lista.copy()
     posiciones = []
@@ -443,19 +443,26 @@ def ordenar_valores (lista):
     while (criterio != "B") and (criterio != "S") and (criterio != "I"):
         criterio = input("\nERROR - Ingrese el algoritmo de ordenamiento a ejecutar [B=Intercambio/Burbuja | S=Selección | I=Inserción]:\t").upper()
     
+    inicio=time.perf_counter()
+
     if criterio == "B":
-        lista_ordenada= ordenamiento_por_intercambio_mejorada(lista_trabajo)
+        lista_ordenada= ordenamientoPorIntercambioMejorada(lista_trabajo)
         mensaje = "ORDENAMIENTO POR INTERCAMBIO/BURBUJA"
     
     elif criterio == "I":
-        lista_ordenada = ordenamiento_por_insercion(lista_trabajo)
+        lista_ordenada = ordenamientoPorInsercion(lista_trabajo)
         mensaje = "ORDENAMIENTO POR INSERCION"
    
     else:
-        lista_ordenada = ordenamiento_por_seleccion(lista_trabajo)
+        lista_ordenada = ordenamientoPorSeleccion(lista_trabajo)
         mensaje = "ORDENAMIENTO POR SELECCION"
     
-    mostrar_valores(lista_ordenada, mensaje)    
+    fin=time.perf_counter()
+
+    mostrar_valores(lista_ordenada, mensaje)
+    
+    print (f"Tiempo empleado [ms]: {(fin-inicio)*1000:.2f}")    
+    
     return
 
 def buscar_valor (lista):
@@ -475,13 +482,27 @@ def buscar_valor (lista):
     
     if criterio == "S":
         valor = pedir_entero("\nIngrese el valor a buscar en la lista:\t")
-        busqueda_secuencial(lista_trabajo, valor)
+        busquedaSecuencialTodasPosiciones(lista_trabajo, valor)
+        inicio=time.perf_counter()
+        posiciones = busquedaSecuencialTodasPosiciones(lista_trabajo, valor)
+        fin=time.perf_counter()
+        print("\nBÚSQUEDA SECUENCIAL")
+        print(f"Veces que el valor {valor} fue encontrado: {len(posiciones)}")
+        print(f"Posiciones donde el valor {valor} fue encontrado: {posiciones}")
+        print(f"Tiempo empleado [ms]: {(fin - inicio) * 1000:.2f}")
 
     if criterio == "B":
         esta_ordenada = all(lista_trabajo[i] <= lista_trabajo[i+1] for i in range(len(lista_trabajo)-1))
         if esta_ordenada == True:
             valor = pedir_entero("\nIngrese el valor a buscar en la lista:\t")
-            busqueda_binaria(lista_trabajo, valor)
+            busquedaBinariaTodasPosiciones(lista_trabajo, valor)
+            inicio = time.perf_counter()
+            posiciones = busquedaBinariaTodasPosiciones(lista_trabajo, valor)  
+            fin = time.perf_counter()
+            print("\nBÚSQUEDA BINARIA")
+            print(f"Veces que el valor {valor} fue encontrado: {len(posiciones)}")
+            print(f"Posiciones donde el valor {valor} fue encontrado: {posiciones}")
+            print(f"Tiempo empleado [ms]: {(fin - inicio) * 1000:.2f}")
         
         else:
             ordenar = input("\nPrimero se debe ordenar la lista. Desea continuar? [SI/NO]:\t").upper()
@@ -490,8 +511,17 @@ def buscar_valor (lista):
             if ordenar == "NO":
                 print("\nVolviendo al menú...\t")
             else:
-                lista_ordenada = ordenamiento_por_seleccion(lista_trabajo)
-                busqueda_binaria(lista_ordenada, valor)
+                lista_ordenada = ordenamientoPorSeleccion(lista_trabajo)
+                valor = pedir_entero("\nIngrese el valor a buscar en la lista:\t")
+                
+                inicio = time.perf_counter()
+                posiciones = busquedaBinariaTodasPosiciones(lista_ordenada, valor)
+                fin = time.perf_counter()
+                
+                print("\nBÚSQUEDA BINARIA")
+                print(f"Veces que el valor {valor} fue encontrado: {len(posiciones)}")
+                print(f"Posiciones donde el valor {valor} fue encontrado: {posiciones}")
+                print(f"Tiempo empleado [ms]: {(fin - inicio) * 1000:.2f}")
                 
     return
 
