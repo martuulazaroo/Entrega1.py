@@ -21,6 +21,8 @@ A través de un menú de opciones, el usuario puede:
    5. Desdoblar la lista en varias listas según diferentes criterios.
    6. Ver un ranking con los "N" valores más altos.
    7. Buscar el máximo y el mínimo y mostrarlos destacados en la tabla.
+   8. Ordenar los valores con diferentes métodos de ordenamiento (intercambio, inserción o selección).
+   9. Buscar un valor específico en la lista utilizando búsqueda secuencial o binaria.
 
  Todo el código está hecho usando funciones separadas y respetando las
  reglas de la cátedra (sin usar funciones automáticas como max, min o sort).
