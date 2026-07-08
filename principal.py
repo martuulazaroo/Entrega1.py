@@ -347,6 +347,153 @@ def buscar_max_min (lista):
     mostrar_valores(lista_trabajo, "VALORES DEL JUEGO DE DATOS (DATOS MÁXIMOS Y MÍNIMOS [máx] (mín) <máx/mín>)")
     
     return
+def ordenamientoPorIntercambioMejorada(lista):
+    '''
+    Ordena una lista con el metodo de intercambio o burbuja.
+    '''
+    lista_trabajo = lista.copy()
+
+    huboIntercambio = True 
+    comparaciones = len(lista_trabajo) - 1
+    while huboIntercambio and comparaciones > 0:
+        huboIntercambio = False
+        for posElem in range(comparaciones):
+            if lista_trabajo[posElem] > lista_trabajo[posElem + 1]:
+                lista_trabajo[posElem], lista_trabajo[posElem + 1] = lista_trabajo[posElem + 1], lista_trabajo[posElem]
+                huboIntercambio = True
+        comparaciones = comparaciones - 1
+    return lista_trabajo
+
+def ordenamientoPorInsercion(lista):
+    '''
+    Ordena una lista con el metodo de inserción.
+    '''
+    lista_trabajo = lista.copy()
+    for destinoDelMayor in range(len(lista_trabajo) - 1, 0, -1):
+            posicDelMayor = 0
+            for posElem in range(1, destinoDelMayor + 1):
+                if lista_trabajo[posElem] > lista_trabajo[posicDelMayor]: 
+                    posicDelMayor = posElem
+            lista_trabajo[posicDelMayor], lista_trabajo[destinoDelMayor] = lista_trabajo[destinoDelMayor], lista_trabajo[posicDelMayor]
+    
+    return lista_trabajo
+
+def ordenamientoPorSeleccion(lista):
+    '''
+    Ordena una listaa con el metodo de seleccion.
+    '''
+    lista_trabajo = lista.copy()
+    for posActual in range(1, len(lista_trabajo)):
+        elem = lista_trabajo[posActual]
+        posElem = posActual
+        while posElem > 0 and lista_trabajo[posElem - 1] > elem:
+            lista_trabajo[posElem] = lista_trabajo[posElem - 1]
+            posElem = posElem - 1
+        lista_trabajo[posElem] = elem
+    return lista_trabajo
+
+def busquedaBinariaTodasPosiciones(lista, valor):
+    lista_trabajo = lista.copy()
+    izq = 0
+    der = len(lista_trabajo) - 1
+    pos = -1
+    while izq <= der and pos == -1:
+        medio = (izq + der) // 2
+        if lista_trabajo[medio] == valor:
+            pos = medio
+        elif lista_trabajo[medio] < valor:
+            izq = medio + 1
+        else:
+            der = medio - 1
+
+    posiciones = []
+    if pos != -1:
+        i = pos
+        while i >= 0 and lista_trabajo[i] == valor:
+            i -= 1
+        i += 1
+        while i < len(lista_trabajo) and lista_trabajo[i] == valor:
+            posiciones.append(i)
+            i += 1
+
+    return posiciones
+    return
+def busquedaSecuencialTodasPosiciones(lista, valor):
+    lista_trabajo = lista.copy()
+    posiciones = []
+    pos = 0
+    while pos < len(lista_trabajo):
+        if lista_trabajo[pos] == valor:
+            posiciones.append(pos)
+        pos = pos + 1
+    return posiciones
+
+def ordenar_valores (lista):
+    '''
+    Ordena los valores de la lista con el método de ordenación pedido y los muestra en la tabla.
+    Recibe: lista (list)-> La lista original a ordenar.
+    Devuelve: None-> Solo muestra los valores ordenados en la tabla.
+    '''
+    print("\n[Opción 8] Se seleccionó: Ordenar valores")
+
+    lista_trabajo = lista.copy()
+
+    criterio = input("\nIngrese el algoritmo de ordenamiento a ejecutar [B=Intercambio/Burbuja | S=Selección | I=Inserción]:\t").upper()
+    
+    while (criterio != "B") and (criterio != "S") and (criterio != "I"):
+        criterio = input("\nERROR - Ingrese el algoritmo de ordenamiento a ejecutar [B=Intercambio/Burbuja | S=Selección | I=Inserción]:\t").upper()
+    
+    if criterio == "B":
+        lista_ordenada= ordenamiento_por_intercambio_mejorada(lista_trabajo)
+        mensaje = "ORDENAMIENTO POR INTERCAMBIO/BURBUJA"
+    
+    elif criterio == "I":
+        lista_ordenada = ordenamiento_por_insercion(lista_trabajo)
+        mensaje = "ORDENAMIENTO POR INSERCION"
+   
+    else:
+        lista_ordenada = ordenamiento_por_seleccion(lista_trabajo)
+        mensaje = "ORDENAMIENTO POR SELECCION"
+    
+    mostrar_valores(lista_ordenada, mensaje)    
+    return
+
+def buscar_valor (lista):
+    '''
+    Busca un valor solicitado por el usuario con el método de busqueda pedido. Lo muestra en la tabla.
+    Recibe: Lista (list)-> La lista original sobre la que buscamos.
+    Devuelve: None-> Solo muestra la cantidad de veces que fue encontrado el valor y las posiciones en las que se halló.
+    '''
+    print("\n[Opción 9] Se seleccionó: Buscar valor.")
+    
+    lista_trabajo = lista.copy()
+
+    criterio = input("\nIngrese el algoritmo de busqueda a ejecutar [S=Secuencial | B=Binaria]:\t").upper()
+
+    while (criterio != "S") and (criterio != "B"):
+        criterio = input("\nERROR - Ingrese el algoritmo de busqueda a ejecutar [S=Secuencial | B=Binaria]:\t").upper()
+    
+    if criterio == "S":
+        valor = pedir_entero("\nIngrese el valor a buscar en la lista:\t")
+        busqueda_secuencial(lista_trabajo, valor)
+
+    if criterio == "B":
+        esta_ordenada = all(lista_trabajo[i] <= lista_trabajo[i+1] for i in range(len(lista_trabajo)-1))
+        if esta_ordenada == True:
+            valor = pedir_entero("\nIngrese el valor a buscar en la lista:\t")
+            busqueda_binaria(lista_trabajo, valor)
+        
+        else:
+            ordenar = input("\nPrimero se debe ordenar la lista. Desea continuar? [SI/NO]:\t").upper()
+            while (ordenar != "SI") and (ordenar != "NO"):
+                ordenar = input("\nERROR - Primero se debe ordenar la lista. Desea continuar? [SI/NO]:\t").upper()
+            if ordenar == "NO":
+                print("\nVolviendo al menú...\t")
+            else:
+                lista_ordenada = ordenamiento_por_seleccion(lista_trabajo)
+                busqueda_binaria(lista_ordenada, valor)
+                
+    return
 
 
 #----------------------------------------------------------------------------------------------
